@@ -1,5 +1,7 @@
 import 'dart:io';
 import 'package:ecommerce/try.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/widgets.dart';
 import 'package:http/http.dart' as http;
 import 'package:ecommerce/Componenets/Drawer.dart';
 import 'package:ecommerce/cartScreen.dart';
@@ -41,15 +43,10 @@ class _MainscreenState extends State<Mainscreen> {
   var bottomIndex = 0;
 
   // var random = new Random();
-  var Fragments = [
-    Favourite(),
-    Favourite(),
-    CartScreen(),
-    trial(),
-  ];
 
   @override
   Widget build(BuildContext context) {
+    var Fragments = [Favourite(), Favourite(), CartScreen(), Account(context)];
     // print(MediaQuery.of(context).size.width);
     print('rendered');
     var current = Provider.of<provider>(context, listen: false);
@@ -90,7 +87,6 @@ class _MainscreenState extends State<Mainscreen> {
               ],
             ),
 
-           
             body: current.index == 0
                 ? home(context, current)
                 : Fragments[current.index],
@@ -182,37 +178,59 @@ class _homeState extends State<home> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
-              Builder(builder: (context) {
-                return GestureDetector(
-                  onTap: () {
-                    print('TAPPED');
-                    // if (!Scaffold.of(context).isDrawerOpen) {
-                    Scaffold.of(context).openDrawer();
-                    // }
-                  },
-                  child: Container(
-                    margin: EdgeInsets.only(
-                      left: 10,
-                      top: MediaQuery.of(context).padding.top,
-                    ),
-                    //  color: Colors.amber,
-                    height: 60,
-                    child: Center(
-                      child: CircleAvatar(
-                        backgroundColor: Colors.grey.shade300,
-                        radius: 22,
-                        // maxRadius: 30,
-                        child: IconButton(
-                            onPressed: null,
-                            icon: Icon(
-                              Icons.person,
-                              color: Colors.black,
-                            )),
+              Row(children: [
+                Builder(builder: (context) {
+                  return GestureDetector(
+                    onTap: () {
+                      print('TAPPED');
+                      // if (!Scaffold.of(context).isDrawerOpen) {
+                      Scaffold.of(context).openDrawer();
+                      // }
+                    },
+                    child: Container(
+                      margin: EdgeInsets.only(
+                        left: 10,
+                        top: MediaQuery.of(context).padding.top,
+                      ),
+                      height: 60,
+                      child: Center(
+                        child: CircleAvatar(
+                          backgroundColor: Colors.grey.shade300,
+                          radius: 22,
+                          // maxRadius: 30,
+                          child: IconButton(
+                              onPressed: null,
+                              icon: Icon(
+                                Icons.person,
+                                color: Colors.black,
+                              )),
+                        ),
                       ),
                     ),
-                  ),
-                );
-              }),
+                  );
+                }),
+                FirebaseAuth.instance.currentUser == null
+                    ? InkWell(
+                        onTap: () {
+                          Navigator.of(widget.he).pushNamed('toMainScreen');
+                        },
+                        child: Container(
+                            height: 60,
+                            margin: EdgeInsets.only(
+                              left: 6,
+                              top: MediaQuery.of(context).padding.top,
+                            ),
+                            child: Center(
+                                child: Text('Login/Register',
+                                    style: GoogleFonts.lato(
+                                      fontSize: 18,
+                                      fontWeight: FontWeight.w400,
+                                      color: Colors.black,
+                                    )))),
+                      )
+                    : Container(),
+              ]),
+
               /////////////////////////////TEXTFORM FIELD//////////////////////////////////
               // Container(
               //   width: MediaQuery.of(context).size.width - 80,

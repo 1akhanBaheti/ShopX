@@ -210,7 +210,7 @@ class _SignupState extends State<Signup> {
                               setState(() {
                                 isLoading = true;
                               });
-                              auth.Signup('test3@gmail.com', password.text,name.text)
+                              auth.Signup(email, password.text,name.text)
                                   .then((_) {
                                 isLoading = false;
                                 Navigator.of(context)

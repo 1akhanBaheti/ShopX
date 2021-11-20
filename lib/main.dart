@@ -106,7 +106,7 @@ class _MyAppState extends State<MyApp> {
             'toPopularScreen': (ctx) => Popular(),
             'toCartScreen': (ctx) => CartScreen(),
             'Base_delievery_address': (ctx) => DelieveryAdress(),
-            'toAccount': (ctx) => Account(),
+            //'toAccount': (ctx) => Account(),
             'toSearch': (ctx) => Search(),
             'toMainoptions': (ctx) => MainSignupLogin(),
             'toSignupScreen': (ctx) => Signup(),

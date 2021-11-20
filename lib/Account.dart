@@ -1,242 +1,441 @@
+import 'dart:ui';
+
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/painting.dart';
+import 'package:flutter/rendering.dart';
+import 'package:flutter/widgets.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 
-class Account extends StatelessWidget {
+import 'authentication.dart';
+
+class Account extends StatefulWidget {
+  var he;
+  Account(BuildContext this.he);
+
   // const Account({Key? key}) : super(key: key);
 
   @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      body: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
+  State<Account> createState() => _AccountState();
+}
 
-          SizedBox(height: 40),
-          Container(
-              margin: EdgeInsets.only(left: 10),
-              child: Text(
-                'My Account',
-                style: TextStyle(fontSize: 22, fontWeight: FontWeight.normal),
-              )),
-          SizedBox(
-            height: 20,
-          ),
-          Container(
-            height: MediaQuery.of(context).size.height -142,
-            child: SingleChildScrollView(
-              child: Column(
-                children: [
-                  Container(
-                    height: 260,
-                    width: MediaQuery.of(context).size.width,
-                    // color: Colors.deepPurple,
-                    child: Stack(
+class _AccountState extends State<Account> {
+  var isLoading = false;
+
+  @override
+  Widget build(BuildContext context) {
+   // print(FirebaseAuth.instance.currentUser);
+    print('lakhan');
+    var authProvider = Provider.of<Auth>(context);
+    return Scaffold(
+      body: FirebaseAuth.instance.currentUser != null
+          ? Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                SizedBox(height: 40),
+                Container(
+                    margin: EdgeInsets.only(left: 10),
+                    child: Text(
+                      'My Account',
+                      style: TextStyle(
+                          fontSize: 22, fontWeight: FontWeight.normal),
+                    )),
+                SizedBox(
+                  height: 20,
+                ),
+                Container(
+                  height: MediaQuery.of(context).size.height - 142,
+                  child: SingleChildScrollView(
+                    child: Column(
                       children: [
                         Container(
-                          color: Colors.deepPurple.withOpacity(0.1),
                           height: 260,
-                          child: Column(
+                          width: MediaQuery.of(context).size.width,
+                          // color: Colors.deepPurple,
+                          child: Stack(
                             children: [
                               Container(
-                                margin: EdgeInsets.only(right: 15),
-                                width: MediaQuery.of(context).size.width,
-                                height: 20,
-                                child: Text(
-                                  "Edit",
-                                  textAlign: TextAlign.end,
-                                  style: TextStyle(
-                                      fontSize: 18,
-                                      color: Colors.deepPurple,
-                                      fontWeight: FontWeight.bold),
-                                ),
-                              ),
-                              Container(
-                                //color: Colors.amber,
-                                height: 140,
+                                color: Colors.deepPurple.withOpacity(0.1),
+                                height: 260,
+                                child: Column(
+                                  children: [
+                                    Container(
+                                      margin: EdgeInsets.only(right: 15),
+                                      width: MediaQuery.of(context).size.width,
+                                      height: 20,
+                                      child: Text(
+                                        "Edit",
+                                        textAlign: TextAlign.end,
+                                        style: TextStyle(
+                                            fontSize: 18,
+                                            color: Colors.deepPurple,
+                                            fontWeight: FontWeight.bold),
+                                      ),
+                                    ),
+                                    Container(
+                                      //color: Colors.amber,
+                                      height: 140,
 
-                                child: Center(
-                                  child: CircleAvatar(
-                                    backgroundColor: Colors.grey[200],
-                                    radius: 60,
-                                    backgroundImage: NetworkImage(
-                                        "https://image.flaticon.com/icons/png/512/1077/1077114.png"),
-                                  ),
-                                ),
-                              ),
-                              Center(
-                                child: Container(
-                                  child: Text(
-                                    'Name',
-                                    style: GoogleFonts.lato(
-                                        fontWeight: FontWeight.normal,
-                                        fontSize: 22),
-                                  ),
-                                ),
-                              ),
-                              SizedBox(
-                                height: 5,
-                              ),
-                              Center(
-                                child: Container(
-                                  child: Text(
-                                    'Email address',
-                                    style: GoogleFonts.lato(fontSize: 22),
-                                  ),
-                                ),
-                              ),
-                              SizedBox(
-                                height: 5,
-                              ),
-                              Center(
-                                child: Container(
-                                  child: Text(
-                                    'Mobile no.',
-                                    style: GoogleFonts.lato(fontSize: 22),
-                                  ),
+                                      child: Center(
+                                        child: CircleAvatar(
+                                          backgroundColor: Colors.grey[200],
+                                          radius: 60,
+                                          backgroundImage: NetworkImage(
+                                              "https://image.flaticon.com/icons/png/512/1077/1077114.png"),
+                                        ),
+                                      ),
+                                    ),
+                                    Center(
+                                      child: Container(
+                                        child: Text(
+                                          '${FirebaseAuth.instance.currentUser!.displayName}',
+                                          style: GoogleFonts.lato(
+                                            fontWeight: FontWeight.bold,
+                                            fontSize: 20,
+                                          ),
+                                        ),
+                                      ),
+                                    ),
+                                    SizedBox(
+                                      height: 5,
+                                    ),
+                                    Center(
+                                      child: Container(
+                                        child: Text(
+                                          '${FirebaseAuth.instance.currentUser!.email}',
+                                          style: GoogleFonts.lato(
+                                              fontSize: 20,
+                                              fontWeight: FontWeight.bold),
+                                        ),
+                                      ),
+                                    ),
+                                    SizedBox(
+                                      height: 5,
+                                    ),
+                                    FirebaseAuth.instance.currentUser!
+                                                .phoneNumber !=
+                                            null
+                                        ? Center(
+                                            child: Container(
+                                              child: Text(
+                                                'Mobile no.',
+                                                style: GoogleFonts.lato(
+                                                    fontSize: 20),
+                                              ),
+                                            ),
+                                          )
+                                        : Center(
+                                            child: Container(
+                                              child: RichText(
+                                                text: TextSpan(
+                                                  children: [
+                                                    TextSpan(
+                                                        text: 'Mobile no:',
+                                                        style: GoogleFonts.lato(
+                                                            fontSize: 20,
+                                                            fontWeight:
+                                                                FontWeight.bold,
+                                                            color:
+                                                                Colors.black)),
+                                                    TextSpan(
+                                                        text: ' not added',
+                                                        style: TextStyle(
+                                                            fontSize: 18,
+                                                            fontWeight:
+                                                                FontWeight
+                                                                    .normal,
+                                                            color:
+                                                                Colors.black))
+                                                  ],
+                                                  // style: GoogleFonts.lato(fontSize: 20,color: Colors.black,fontWeight: FontWeight.bold),
+                                                ),
+                                              ),
+                                            ),
+                                          ),
+                                  ],
                                 ),
                               ),
                             ],
                           ),
                         ),
+                        Container(
+                          padding: EdgeInsets.only(top: 18, left: 14),
+                          height: 60,
+                          width: MediaQuery.of(context).size.width,
+                          child: Text(
+                            'Your orders',
+                            style: GoogleFonts.lato(
+                                fontSize: 20, fontWeight: FontWeight.normal),
+                          ),
+                        ),
+                        Container(
+                          height: 2,
+                          color: Colors.grey[200],
+                        ),
+                        Container(
+                          padding: EdgeInsets.only(top: 18, left: 14),
+                          height: 60,
+                          width: MediaQuery.of(context).size.width,
+                          child: Text(
+                            'Address',
+                            style: GoogleFonts.lato(
+                                fontSize: 20, fontWeight: FontWeight.normal),
+                          ),
+                        ),
+                        Container(
+                          height: 2,
+                          color: Colors.grey[200],
+                        ),
+                        Container(
+                          padding: EdgeInsets.only(top: 18, left: 14),
+                          height: 60,
+                          width: MediaQuery.of(context).size.width,
+                          child: Text(
+                            'Message',
+                            style: GoogleFonts.lato(
+                                fontSize: 20, fontWeight: FontWeight.normal),
+                          ),
+                        ),
+                        Container(
+                          height: 2,
+                          color: Colors.grey[200],
+                        ),
+                        Container(
+                          padding: EdgeInsets.only(top: 18, left: 14),
+                          height: 60,
+                          width: MediaQuery.of(context).size.width,
+                          child: Text(
+                            'Setting',
+                            style: GoogleFonts.lato(
+                                fontSize: 20, fontWeight: FontWeight.normal),
+                          ),
+                        ),
+                        Container(
+                          height: 2,
+                          color: Colors.grey[200],
+                        ),
+                        Container(
+                          padding: EdgeInsets.only(top: 18, left: 14),
+                          height: 60,
+                          width: MediaQuery.of(context).size.width,
+                          child: Text(
+                            'Setting',
+                            style: GoogleFonts.lato(
+                                fontSize: 20, fontWeight: FontWeight.normal),
+                          ),
+                        ),
+                        Container(
+                          height: 2,
+                          color: Colors.grey[200],
+                        ),
+                        Container(
+                          padding: EdgeInsets.only(top: 18, left: 14),
+                          height: 60,
+                          width: MediaQuery.of(context).size.width,
+                          child: Text(
+                            'Payment Methods',
+                            style: GoogleFonts.lato(
+                                fontSize: 20, fontWeight: FontWeight.normal),
+                          ),
+                        ),
+                        Container(
+                          height: 2,
+                          color: Colors.grey[200],
+                        ),
+                        Container(
+                          padding: EdgeInsets.only(top: 18, left: 14),
+                          height: 60,
+                          width: MediaQuery.of(context).size.width,
+                          child: Text(
+                            'Terms & Conditions',
+                            style: GoogleFonts.lato(
+                              fontSize: 20,
+                            ),
+                          ),
+                        ),
+                        Container(
+                          height: 2,
+                          color: Colors.grey[200],
+                        ),
+                        Container(
+                          padding: EdgeInsets.only(top: 18, left: 14),
+                          height: 60,
+                          width: MediaQuery.of(context).size.width,
+                          child: Text(
+                            'About Us',
+                            style: GoogleFonts.lato(
+                                fontSize: 20, color: Colors.black),
+                          ),
+                        ),
+                        Container(
+                          height: 8,
+                          color: Colors.grey[200],
+                        ),
+                        SizedBox(
+                          height: 10,
+                        ),
+                        FirebaseAuth.instance.currentUser != null
+                            ? Stack(
+                                children: [
+                                  Container(
+                                    height: 60,
+                                    margin:
+                                        EdgeInsets.only(left: 20, right: 20),
+                                    width: MediaQuery.of(context).size.width,
+                                    child: ElevatedButton(
+                                      style: ButtonStyle(
+                                          backgroundColor:
+                                              MaterialStateProperty.all(
+                                                  Colors.deepPurple)),
+                                      onPressed: () async {
+                                        setState(() {
+                                          isLoading = true;
+                                        });
+                                        authProvider.logOut().then((value) {
+                                          if (value) {
+                                            print(value);
+                                            setState(() {
+                                              isLoading = false;
+                                            });
+                                            ScaffoldMessenger.of(context)
+                                                .showSnackBar(SnackBar(
+                                                    content: Text(
+                                                        'Succesfully Logout')));
+                                          }
+                                        }).catchError((e) {
+                                          setState(() {
+                                            isLoading = false;
+                                          });
+                                          showDialog(
+                                              context: context,
+                                              builder: (context) {
+                                                return AlertDialog(
+                                                  content: Text(
+                                                      'Something went wrong please try again '),
+                                                  actions: [
+                                                    TextButton(
+                                                        onPressed: () {
+                                                          Navigator.of(context)
+                                                              .pop();
+                                                        },
+                                                        child: Text('Ok'))
+                                                  ],
+                                                );
+                                              });
+                                        });
+                                      },
+                                      child: Text(
+                                        'Logout',
+                                        style: TextStyle(
+                                            fontSize: 18, color: Colors.white),
+                                      ),
+                                    ),
+                                  ),
+                                  isLoading
+                                      ? Container(
+                                          color: Colors.white,
+                                          height: 60,
+                                          margin: EdgeInsets.only(
+                                              left: 20, right: 20),
+                                          child: Center(
+                                            child: CircularProgressIndicator(
+                                              color: Colors.deepPurple,
+                                            ),
+                                          ),
+                                        )
+                                      : Container()
+                                ],
+                              )
+                            : Container()
+                        // Container(
+                        //     height: 60,
+                        //     margin: EdgeInsets.only(left: 20, right: 20),
+                        //     width: MediaQuery.of(context).size.width,
+                        //     child: ElevatedButton(
+                        //       style: ButtonStyle(
+                        //           backgroundColor:
+                        //               MaterialStateProperty.all(
+                        //                   Colors.deepPurple)),
+                        //       onPressed: null,
+                        //       child: Text(
+                        //         'Login',
+                        //         style: TextStyle(
+                        //             fontSize: 18, color: Colors.white),
+                        //       ),
+                        //     ),
+                        //   ),
                       ],
                     ),
                   ),
+                ),
+              ],
+            )
+          : Container(
+              color: Colors.white,
+              height: MediaQuery.of(context).size.height,
+              width: MediaQuery.of(context).size.width,
+              child: Column(
+                children: [
                   Container(
-                    padding: EdgeInsets.only(top: 18, left: 14),
-                    height: 60,
-                    width: MediaQuery.of(context).size.width,
-                    child: Text(
-                      'Your orders',
-                      style: GoogleFonts.lato(
-                          fontSize: 20, fontWeight: FontWeight.normal),
+                    //color: Colors.amber,
+                    height: MediaQuery.of(context).size.height * .50,
+                    width: double.infinity,
+                    margin: EdgeInsets.only(
+                        top: MediaQuery.of(context).size.height * .2),
+                    child: FittedBox(
+                      fit: BoxFit.contain,
+                      child: Image.asset('assets/images/doors.jpg'),
                     ),
                   ),
-                  Container(
-                    height: 2,
-                    color: Colors.grey[200],
-                  ),
-                  Container(
-                    padding: EdgeInsets.only(top: 18, left: 14),
-                    height: 60,
-                    width: MediaQuery.of(context).size.width,
-                    child: Text(
-                      'Address',
-                      style: GoogleFonts.lato(
-                          fontSize: 20, fontWeight: FontWeight.normal),
-                    ),
-                  ),
-                  Container(
-                    height: 2,
-                    color: Colors.grey[200],
-                  ),
-                  Container(
-                    padding: EdgeInsets.only(top: 18, left: 14),
-                    height: 60,
-                    width: MediaQuery.of(context).size.width,
-                    child: Text(
-                      'Message',
-                      style: GoogleFonts.lato(
-                          fontSize: 20, fontWeight: FontWeight.normal),
-                    ),
-                  ),
-                  Container(
-                    height: 2,
-                    color: Colors.grey[200],
-                  ),
-                  Container(
-                    padding: EdgeInsets.only(top: 18, left: 14),
-                    height: 60,
-                    width: MediaQuery.of(context).size.width,
-                    child: Text(
-                      'Setting',
-                      style: GoogleFonts.lato(
-                          fontSize: 20, fontWeight: FontWeight.normal),
-                    ),
-                  ),
-                  Container(
-                    height: 2,
-                    color: Colors.grey[200],
-                  ),
-                  Container(
-                    padding: EdgeInsets.only(top: 18, left: 14),
-                    height: 60,
-                    width: MediaQuery.of(context).size.width,
-                    child: Text(
-                      'Setting',
-                      style: GoogleFonts.lato(
-                          fontSize: 20, fontWeight: FontWeight.normal),
-                    ),
-                  ),
-                  Container(
-                    height: 2,
-                    color: Colors.grey[200],
-                  ),
-                  Container(
-                    padding: EdgeInsets.only(top: 18, left: 14),
-                    height: 60,
-                    width: MediaQuery.of(context).size.width,
-                    child: Text(
-                      'Payment Methods',
-                      style: GoogleFonts.lato(
-                          fontSize: 20, fontWeight: FontWeight.normal),
-                    ),
-                  ),
-                  Container(
-                    height: 2,
-                    color: Colors.grey[200],
-                  ),
-                  Container(
-                    padding: EdgeInsets.only(top: 18, left: 14),
-                    height: 60,
-                    width: MediaQuery.of(context).size.width,
-                    child: Text(
-                      'Terms & Conditions',
-                      style: GoogleFonts.lato(
-                          fontSize: 20,),
-                    ),
-                  ),
-                  Container(
-                    height: 2,
-                    color: Colors.grey[200],
-                  ),
-                  Container(
-                    padding: EdgeInsets.only(top: 18, left: 14),
-                    height: 60,
-                    width: MediaQuery.of(context).size.width,
-                    child: Text(
-                      'About Us',
-                      style: GoogleFonts.lato(fontSize: 20, color: Colors.black),
-                    ),
-                  ),
-                  Container(
-                    height: 8,
-                    color: Colors.grey[200],
-                  ),
-                  SizedBox(
-                    height: 10,
-                  ),
-                  Container(
-                    height: 60,
-                    margin: EdgeInsets.only(left: 20, right: 20),
-                    width: MediaQuery.of(context).size.width,
-                    child: ElevatedButton(
-                      style: ButtonStyle(
-                          backgroundColor:
-                              MaterialStateProperty.all(Colors.deepPurple)),
-                      onPressed: null,
+                  Center(
+                    child: Container(
                       child: Text(
-                        'Logout',
-                        style: TextStyle(fontSize: 18, color: Colors.white),
+                        'Your are not Logged In',
+                        style: GoogleFonts.lato(
+                          color: Colors.grey.shade800,
+                          fontSize: 20,
+                        ),
+                      ),
+                    ),
+                  ),
+                  Center(
+                    child: Container(
+                      child: Text(
+                        'please Log in!',
+                        style: GoogleFonts.lato(
+                          color: Colors.grey.shade800,
+                          fontSize: 20,
+                        ),
+                      ),
+                    ),
+                  ),
+                  InkWell(
+                    onTap: () {
+                      Navigator.of(widget.he).pushNamed('toMainoptions');
+                    },
+                    child: Container(
+                      decoration: BoxDecoration(
+                        color: Colors.deepPurple,
+                        borderRadius: BorderRadius.circular(10),
+                      ),
+                      height: 60,
+                      width: double.infinity,
+                      margin: EdgeInsets.all(20),
+                      child: Center(
+                        child: Text(
+                          'Log in',
+                          style: GoogleFonts.lato(
+                              color: Colors.white,
+                              fontWeight: FontWeight.bold,
+                              fontSize: 20),
+                        ),
                       ),
                     ),
                   ),
                 ],
-              ),
-            ),
-          ),
-        ],
-      ),
+              )),
     );
   }
 }
