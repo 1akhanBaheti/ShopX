@@ -19,15 +19,75 @@ class trial extends StatelessWidget {
 
     var firebaseDatabase = FirebaseDatabase.instance;
     var auth = Provider.of<Auth>(context);
-    //auth.getUser();
-    // var ref = firebaseDatabase.reference().child('Products');
-   // FirebaseAuth.instance.signOut();
-    // FirebaseFirestore.instance
-    //     .collection('Users')
-    //     .doc(FirebaseAuth.instance.currentUser!.uid)
-    //     .update({
-    //   'CART': [{}],
-    // });
-    return Container();
+    
+    return Shimmer.fromColors(
+                      child: ListView.builder(
+                            physics: NeverScrollableScrollPhysics(),
+                            shrinkWrap: true,
+                            itemBuilder: ((ctx, index) {
+                              return Container(
+                           
+                                height: 150,
+   
+                                    child: Row(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      children: [
+                                        
+                                              Container(
+                                             
+                                                 margin: EdgeInsets.all(10),
+                                                height: 130,
+                                                width: 140,
+                                                  color: Colors.white,
+                                                
+                                              ),
+
+                                        Expanded(
+                                          child: Column(
+                                            crossAxisAlignment:
+                                                CrossAxisAlignment.start,
+                                            children: [
+                                              Container(
+                                                height: 20,
+                                                  color: Colors.white,
+                                                  margin: EdgeInsets.only(
+                                                      top: 15,
+                                                      left: 7,
+                                                      right: 7),
+                                              ),
+                                              
+                                              Container(
+                                                width: 100,
+                                                height: 20,
+                                                   color: Colors.white,
+                                                  margin: EdgeInsets.only(top: 10,
+                                                    left: 7,
+                                                    right: 7
+                                                  ),
+                                                  ),
+                                            
+                                              Container(
+                                                width: 50,
+                                                height: 20,
+                                                margin: EdgeInsets.only(
+                                                  top: 10,
+                                                  left: 7,
+                                                  right: 7
+                                                ),
+                                                 color: Colors.white,
+                                              )
+                                            ],
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                  
+                                
+                              );
+                            }),
+                            itemCount: 2), 
+                      baseColor: Colors.grey.shade300,
+                       highlightColor: Colors.grey.shade100);
   }
 }

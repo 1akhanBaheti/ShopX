@@ -1,18 +1,28 @@
 import 'package:ecommerce/Account.dart';
+import 'package:ecommerce/ChangeOrAddAddress.dart';
+import 'package:ecommerce/Componenets/Drawer.dart';
 import 'package:ecommerce/DeliveryAdress_base_Screen.dart';
 import 'package:ecommerce/FavoriteScreen.dart';
+import 'package:ecommerce/NotificationScreen.dart';
 import 'package:ecommerce/Provider.dart';
 import 'package:ecommerce/Search.dart';
 import 'package:ecommerce/authentication.dart';
 import 'package:ecommerce/cartScreen.dart';
+import 'package:ecommerce/checkoutProvider.dart';
+import 'package:ecommerce/checkoutScreen.dart';
+import 'package:ecommerce/confirmationScreen.dart';
 import 'package:ecommerce/firebaseProvider.dart';
 import 'package:ecommerce/mainScreen.dart';
+import 'package:ecommerce/orderDetailsScreenBeforeDelivery.dart';
+import 'package:ecommerce/orders.dart';
+import 'package:ecommerce/paymentScreen.dart';
 import 'package:ecommerce/popularItems.dart';
 import 'package:ecommerce/productDetailScreen.dart';
 import 'package:ecommerce/signupScreens/mainOtions.dart';
 import 'package:ecommerce/signupScreens/signin.dart';
 import 'package:ecommerce/signupScreens/signup.dart';
 import 'package:ecommerce/splashScreen.dart';
+import 'package:ecommerce/userInfoEdit.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -22,10 +32,6 @@ import 'package:shared_preferences/shared_preferences.dart';
 void main() {
   print("INITIALIZATION COMPLETE  ");
   runApp(MyApp());
-  SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
-    statusBarColor: Colors.transparent,
-    statusBarIconBrightness: Brightness.dark,
-  ));
 }
 
 class MyApp extends StatefulWidget {
@@ -53,8 +59,6 @@ class _MyAppState extends State<MyApp> {
     var pref = await SharedPreferences.getInstance();
 
     // await pref.remove('first');
-    
-    
 
     if (pref.getBool('first') == true) {
       print("true1");
@@ -72,10 +76,14 @@ class _MyAppState extends State<MyApp> {
     // var prov = Provider.of<FirebaseProvider>(context);
     return MultiProvider(
       providers: [
-        ChangeNotifierProvider<Auth>(create: (_)=>Auth()),
+        ChangeNotifierProvider<Auth>(create: (_) => Auth()),
         ChangeNotifierProvider<provider>(create: (_) => provider()),
         ChangeNotifierProvider<FirebaseProvider>(
             create: (_) => FirebaseProvider()),
+        ChangeNotifierProvider<CheckoutProvider>(
+            create: (_) => CheckoutProvider()),
+
+        //ChangeNotifierProvider(create: (_) => CheckoutProvider()),
       ],
       // create: (ctx) => provider(),
       child: MaterialApp(
@@ -90,7 +98,7 @@ class _MyAppState extends State<MyApp> {
               if (snapshot.connectionState == ConnectionState.done) {
                 // prov.firebaseApp = _firebaseApp;
 
-                 if (snapshot.data == true) return MainSignupLogin();
+                if (snapshot.data == true) return MainSignupLogin();
 
                 return Mainscreen();
               } else
@@ -101,16 +109,25 @@ class _MyAppState extends State<MyApp> {
           routes: {
             'toSpalshScreen': (ctx) => Splashscreen(),
             'toMainScreen': (ctx) => Mainscreen(),
+            'toSearch': (ctx) => Search(),
+            'toCheckoutScreen': (ctx) => CheckoutScreen(),
+            'toPaymentScreen': (ctx) => PaymentScreen(),
+            'toAccount': (ctx) => Account(),
+            'toMainoptions': (ctx) => MainSignupLogin(),
+            'toConfirmation': (ctx) => Confirmation(),
             'toProductDetailScreen': (ctx) => ProductDetailScreen(),
+            'toOrderDetailsScreenBeforeDelivery': (ctx) =>
+                OrderDetailsScreenBeforeDelivery(),
+            'toOrdersScreen': (ctx) => Orders(),
             'toFavouriteScreen': (ctx) => Favourite(),
+            'toNotificationScreen': (ctx) => Notifications(),
             'toPopularScreen': (ctx) => Popular(),
             'toCartScreen': (ctx) => CartScreen(),
+            'toChangeOrAddAddressScreen': (ctx) => ChangeOrAddAdress(),
             'Base_delievery_address': (ctx) => DelieveryAdress(),
-            //'toAccount': (ctx) => Account(),
-            'toSearch': (ctx) => Search(),
-            'toMainoptions': (ctx) => MainSignupLogin(),
             'toSignupScreen': (ctx) => Signup(),
             'toSignInScreen': (ctx) => Signin(),
+            'toUserInfoEditScreen': (ctx) => UserInfoEdit()
           }),
     );
   }

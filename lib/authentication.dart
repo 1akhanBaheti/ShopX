@@ -46,25 +46,35 @@ class Auth extends ChangeNotifier {
   }
 
   Future checkEmailExist(String email) async {
-    var method = await FirebaseAuth.instance.fetchSignInMethodsForEmail(email);
+    try {
+      var check;
+      await FirebaseAuth.instance
+          .fetchSignInMethodsForEmail(email)
+          .then((value) {
+        check = value.isEmpty;
+      });
+      print(check);
 
-    if (method.isEmpty) return false;
-
-    return true;
+      return check;
+    } catch (er) {
+      throw (er);
+    }
   }
 
   Future signIn(String email, String password) async {
     var user;
-
-    await FirebaseAuth.instance
-        .signInWithEmailAndPassword(email: email, password: password)
-        .then((value) {
-      user = value.user;
-    }).catchError((e) {
+    try {
+      await FirebaseAuth.instance
+          .signInWithEmailAndPassword(email: email, password: password)
+          .then((value) {
+        user = value.user;
+      });
+      return user;
+    } catch (e) {
       print(e);
       throw (e);
-    });
-    return user;
+    }
+    
   }
 
   Future logOut() async {

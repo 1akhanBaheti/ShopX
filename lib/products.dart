@@ -5,17 +5,21 @@ class ProductClass {
   String category;
   bool isFavourite = false;
   String imageUrl;
+  String description;
 
   ProductClass(
       {required this.id,
       required this.category,
       required this.price,
       required this.title,
-      required this.imageUrl});
+      required this.imageUrl,
+      required this.description
+      });
 
   factory ProductClass.fromMap(Map<String, dynamic> data) {
     return ProductClass(
-       category: data['category'],
+      description: data['decription'],
+        category: data['category'],
         id: data['id'],
         price: 2,
         title: data['title'],

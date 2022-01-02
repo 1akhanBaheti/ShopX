@@ -1,6 +1,12 @@
+import 'package:ecommerce/Provider.dart';
+import 'package:ecommerce/firebaseProvider.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
+
+import '../Account.dart';
 
 class Drawer1 extends StatelessWidget {
   var he;
@@ -10,6 +16,7 @@ class Drawer1 extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var firebaseProvider = Provider.of<FirebaseProvider>(context);
     return Container(
       width: MediaQuery.of(context).size.width * 0.7,
       color: Colors.white,
@@ -30,64 +37,69 @@ class Drawer1 extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Container(
-                        margin: EdgeInsets.only(left: 8),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text(
-                              'ShopName',
-                              style: GoogleFonts.lato(
-                                color: Colors.deepPurple,
-                                fontSize: 18,
-                              ),
-                            ),
-                            SizedBox(
-                              height: 8,
-                            ),
-                            Text(
-                              'LAKHAN BAHETI',
-                              style: GoogleFonts.lato(
-                                  color: Colors.black,
-                                  fontSize: 14,
-                                  fontWeight: FontWeight.bold),
-                            ),
-                            SizedBox(
-                              height: 4,
-                            ),
-                            Text(
-                              'lakhanbaheti9@gmail.com',
-                              style: GoogleFonts.lato(
-                                  color: Colors.black,
-                                  fontSize: 14,
-                                  fontWeight: FontWeight.bold),
-                            ),
-                            SizedBox(
-                              height: 6,
-                            ),
-                            Text(
-                              '9685628805',
-                              style: GoogleFonts.lato(
-                                  color: Colors.black,
-                                  fontSize: 14,
-                                  fontWeight: FontWeight.bold),
-                            ),
-                            SizedBox(
-                              height: 6,
-                            ),
-                            Container(
-                              width:
-                                  MediaQuery.of(context).size.width * 0.7 - 85,
-                              child: Text(
-                                'shopName User',
-                                style: GoogleFonts.lato(
-                                    color: Colors.deepPurple,
-                                    fontSize: 15,
-                                    fontWeight: FontWeight.normal),
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
+                          margin: EdgeInsets.only(left: 8),
+                          child: FirebaseAuth.instance.currentUser != null
+                              ? Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Text(
+                                      'ShopName',
+                                      style: GoogleFonts.lato(
+                                        color: Colors.deepPurple,
+                                        fontSize: 18,
+                                      ),
+                                    ),
+                                    SizedBox(
+                                      height: 8,
+                                    ),
+                                    Text(
+                                      '${FirebaseAuth.instance.currentUser!.displayName!.toUpperCase()}',
+                                      style: GoogleFonts.lato(
+                                          color: Colors.black,
+                                          fontSize: 14,
+                                          fontWeight: FontWeight.bold),
+                                    ),
+                                    SizedBox(
+                                      height: 4,
+                                    ),
+                                    Text(
+                                      '${FirebaseAuth.instance.currentUser!.email}',
+                                      style: GoogleFonts.lato(
+                                          color: Colors.black,
+                                          fontSize: 16,
+                                          fontWeight: FontWeight.bold),
+                                    ),
+                                    SizedBox(
+                                      height: 6,
+                                    ),
+                                   FirebaseAuth.instance.currentUser!.phoneNumber !=
+                                            ''
+                                        ? Text(
+                                            '9685628805',
+                                            style: GoogleFonts.lato(
+                                                color: Colors.black,
+                                                fontSize: 14,
+                                                fontWeight: FontWeight.bold),
+                                          )
+                                        : Container(),
+                                    SizedBox(
+                                      height: 6,
+                                    ),
+                                    Container(
+                                      width: MediaQuery.of(context).size.width *
+                                              0.7 -
+                                          85,
+                                      child: Text(
+                                        'shopName User',
+                                        style: GoogleFonts.lato(
+                                            color: Colors.deepPurple,
+                                            fontSize: 15,
+                                            fontWeight: FontWeight.normal),
+                                      ),
+                                    ),
+                                  ],
+                                )
+                              : Container()),
                       Expanded(
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.end,
@@ -121,30 +133,181 @@ class Drawer1 extends StatelessWidget {
                 ),
               )),
           InkWell(
+              onTap: () {
+                Navigator.of(context)
+                    .pushNamedAndRemoveUntil('toMainScreen', (route) => false);
+                // Navigator.pushNamed(context, 'toMainoptions');
+              },
+              // onTap: () {
+              //   Navigator.pushReplacement(
+              //       context, MaterialPageRoute(builder: (ctx) => Account(he)));
+
+              //   // Navigator.pushNamed(context, 'toMainoptions');
+              // },
+              child: Container(
+                margin: EdgeInsets.only(
+                  top: 20,
+                ),
+                child: Row(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    Container(
+                      margin: EdgeInsets.only(left: 15),
+                      child: Icon(
+                        Icons.home_filled,
+                        color: Colors.grey.shade600,
+                      ),
+                    ),
+                    Container(
+                      margin: EdgeInsets.only(left: 13),
+                      child: Text(
+                        'Home',
+                        style: GoogleFonts.roboto(
+                          fontSize: 18,
+                          color: Colors.grey.shade600,
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              )),
+          InkWell(
             onTap: () {
-              Navigator.of(he).pushNamed('toMainoptions');
+              Navigator.pop(context);
+              Navigator.of(he).pushNamed('toOrdersScreen');
               // Navigator.pushNamed(context, 'toMainoptions');
             },
             child: Container(
-              margin: EdgeInsets.only(top: 20),
-              //color: Colors.amber,
-              width: double.infinity,
-              decoration: BoxDecoration(
-                  // color: Colors.amber,
-                  border: Border(
-                      bottom: BorderSide(color: Colors.grey.shade200),
-                      top: BorderSide(color: Colors.grey.shade200))),
-              padding: EdgeInsets.only(left: 12, top: 10),
-              height: 45,
-              child: Text(
-                'Orders',
-                style: GoogleFonts.lato(
-                  fontSize: 18,
-                  color: Colors.black,
-                ),
+              margin: EdgeInsets.only(
+                top: 17,
+              ),
+              child: Row(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  Container(
+                    margin: EdgeInsets.only(left: 15),
+                    child: Icon(
+                      Icons.shopping_basket,
+                      color: Colors.grey.shade600,
+                    ),
+                  ),
+                  Container(
+                    margin: EdgeInsets.only(left: 13),
+                    child: Text(
+                      'Your Orders',
+                      style: GoogleFonts.roboto(
+                        fontSize: 18,
+                        color: Colors.grey.shade600,
+                      ),
+                    ),
+                  ),
+                ],
               ),
             ),
           ),
+          InkWell(
+            onTap: () {
+              Navigator.pop(context);
+              Navigator.of(he).pushNamed('toAccount');
+              // Navigator.pushNamed(context, 'toMainoptions');
+            },
+            child: Container(
+              margin: EdgeInsets.only(
+                top: 17,
+              ),
+              child: Row(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  Container(
+                    margin: EdgeInsets.only(left: 15),
+                    child: Icon(
+                      Icons.account_circle,
+                      color: Colors.grey.shade600,
+                    ),
+                  ),
+                  Container(
+                    margin: EdgeInsets.only(left: 13),
+                    child: Text(
+                      'Your Account',
+                      style: GoogleFonts.roboto(
+                        fontSize: 18,
+                        color: Colors.grey.shade600,
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ),
+          InkWell(
+            onTap: () {
+              Navigator.pop(context);
+              Navigator.of(he).pushNamed('toFavouriteScreen');
+              // Navigator.pushNamed(context, 'toMainoptions');
+            },
+            child: Container(
+              margin: EdgeInsets.only(
+                top: 17,
+              ),
+              child: Row(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  Container(
+                    margin: EdgeInsets.only(left: 15),
+                    child: Icon(
+                      Icons.favorite,
+                      color: Colors.grey.shade600,
+                    ),
+                  ),
+                  Container(
+                    margin: EdgeInsets.only(left: 13),
+                    child: Text(
+                      'Your WishList',
+                      style: GoogleFonts.roboto(
+                        fontSize: 18,
+                        color: Colors.grey.shade600,
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ),
+          InkWell(
+            onTap: () {
+              Navigator.pop(context);
+              Navigator.of(he).pushNamed('toCartScreen');
+              // Navigator.pushNamed(context, 'toMainoptions');
+            },
+            child: Container(
+              margin: EdgeInsets.only(
+                top: 17,
+              ),
+              child: Row(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  Container(
+                    margin: EdgeInsets.only(left: 15),
+                    child: Icon(
+                      Icons.shopping_cart,
+                      color: Colors.grey.shade600,
+                    ),
+                  ),
+                  Container(
+                    margin: EdgeInsets.only(left: 13),
+                    child: Text(
+                      'Your Cart',
+                      style: GoogleFonts.roboto(
+                        fontSize: 18,
+                        color: Colors.grey.shade600,
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ),
+          Spacer(),
           Container(
             //color: Colors.amber,
             width: double.infinity,
@@ -164,7 +327,7 @@ class Drawer1 extends StatelessWidget {
                   width: double.infinity,
                   child: Text(
                     'About Us',
-                    style: GoogleFonts.lato(
+                    style: GoogleFonts.roboto(
                       fontSize: 18,
                       color: Colors.black,
                     ),
@@ -174,7 +337,7 @@ class Drawer1 extends StatelessWidget {
                   width: double.infinity,
                   child: Text(
                     'Contact Us',
-                    style: GoogleFonts.lato(
+                    style: GoogleFonts.roboto(
                       fontSize: 18,
                       color: Colors.black,
                     ),

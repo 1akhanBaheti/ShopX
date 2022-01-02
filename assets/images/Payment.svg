@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="428" height="70" viewBox="0 0 428 70">
+  <g id="Group_3" data-name="Group 3" transform="translate(0 -335)">
+    <g id="Group_2" data-name="Group 2" transform="translate(62 -93)">
+      <rect id="Rectangle_1" data-name="Rectangle 1" width="428" height="70" transform="translate(-62 428)" fill="#fff"/>
+    </g>
+    <g id="Ellipse_1" data-name="Ellipse 1" transform="translate(41 340)" fill="#fff" stroke="#8a2be2" stroke-width="1">
+      <circle cx="17.5" cy="17.5" r="17.5" stroke="none"/>
+      <circle cx="17.5" cy="17.5" r="17" fill="none"/>
+    </g>
+    <g id="Ellipse_3" data-name="Ellipse 3" transform="translate(353 340)" fill="#fff" stroke="#8a2be2" stroke-width="1">
+      <circle cx="17.5" cy="17.5" r="17.5" stroke="none"/>
+      <circle cx="17.5" cy="17.5" r="17" fill="none"/>
+    </g>
+    <text id="Address" transform="translate(27 389)" fill="#707070" font-size="18" font-family="SegoeUI, Segoe UI"><tspan x="0" y="0">Address</tspan></text>
+    <text id="Order_Summary" data-name="Order Summary" transform="translate(151 389)" fill="#707070" font-size="18" font-family="SegoeUI, Segoe UI"><tspan x="0" y="0">Order Summary</tspan></text>
+    <text id="Payment" transform="translate(336 389)" font-size="18" font-family="SegoeUI, Segoe UI"><tspan x="0" y="0">Payment</tspan></text>
+    <g id="Ellipse_4" data-name="Ellipse 4" transform="translate(197 335)" fill="#fff" stroke="#8a2be2" stroke-width="1">
+      <circle cx="17.5" cy="17.5" r="17.5" stroke="none"/>
+      <circle cx="17.5" cy="17.5" r="17" fill="none"/>
+    </g>
+  </g>
+  <text id="_3" data-name="3" transform="translate(365 8)" fill="#8a2be2" font-size="20" font-family="SegoeUI-Bold, Segoe UI" font-weight="700"><tspan x="0" y="22">3</tspan></text>
+  <line id="Line_1" data-name="Line 1" x2="101" transform="translate(84.5 21.5)" fill="none" stroke="#8a2be2" stroke-width="1.5"/>
+  <path id="Path_1" data-name="Path 1" d="M0,0H101" transform="translate(243.5 21.5)" fill="none" stroke="#8a2be2" stroke-width="1.5"/>
+  <line id="Line_3" data-name="Line 3" x2="8" y2="7" transform="translate(48 24)" fill="none" stroke="#8a2be2" stroke-width="2"/>
+  <line id="Line_4" data-name="Line 4" y1="15" x2="13" transform="translate(56 15)" fill="none" stroke="#8a2be2" stroke-width="2"/>
+  <line id="Line_5" data-name="Line 5" y1="15" x2="13" transform="translate(210 11)" fill="none" stroke="#8a2be2" stroke-width="2"/>
+  <line id="Line_6" data-name="Line 6" x2="7" y2="7" transform="translate(203 19)" fill="none" stroke="#8a2be2" stroke-width="2"/>
+</svg>

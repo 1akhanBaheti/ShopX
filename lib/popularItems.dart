@@ -22,6 +22,7 @@ class Popular extends StatelessWidget {
             itemBuilder: ((ctx, index) {
               return InkWell(
                 onTap: ()=>Navigator.of(context).pushNamed('toProductDetailScreen',arguments: ProductClass(
+                         description: Product[index]['description'] as String,
                          category: Product[index]['category'] as String,
                             id: Product[index]['id'] as int,
                             price: Product[index]['price'] as int,
@@ -76,11 +77,11 @@ class Popular extends StatelessWidget {
                               ),
                             ),
                             
-                            Center(
-                              child: Container(
+                           
+                               Container(
                                 margin: EdgeInsets.only(left: 7),
                                 child: Text(Product[index]['title'] as String,maxLines: 2,overflow: TextOverflow.ellipsis,style: GoogleFonts.ptSans(fontWeight: FontWeight.w500,fontSize: 16),),
-                              ),
+                              
                             ),
                            
                             SizedBox(height: 7,),

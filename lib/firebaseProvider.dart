@@ -1,6 +1,8 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:ecommerce/Provider.dart';
 import 'dart:convert';
 import 'package:ecommerce/products.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:http/http.dart' as http;
 import 'package:firebase_database/firebase_database.dart';
@@ -8,9 +10,10 @@ import 'package:flutter/cupertino.dart';
 
 class FirebaseProvider extends ChangeNotifier {
   var firebaseApp;
+  // late User UserDetails;
   bool loadMainOnce = false;
   List<ProductClass> Products = [];
-
+  List<ProductClass> SearchProducts = [];
   firest() async {
     // FirebaseApp secondaryApp = Firebase.app('SecondaryApp');
     var inst = [];
@@ -38,6 +41,7 @@ class FirebaseProvider extends ChangeNotifier {
       var data = json.decode(response.body) as Map<String, dynamic>;
       data.forEach((id, data) {
         loca.add(ProductClass(
+            description: data['description'],
             category: data['category'],
             id: data['id'],
             price: data['price'],
@@ -51,4 +55,24 @@ class FirebaseProvider extends ChangeNotifier {
 
     return Products;
   }
+//////////////////////////SEARCH IMPLEMENTATION ///////////////////////////////////////
+
+  void searchItems(String s) {
+    if (s.length == 0) {
+      SearchProducts = [];
+      notifyListeners();
+      return;
+    }
+    SearchProducts = [];
+    Products.forEach((element) {
+      if (element.title.toLowerCase().startsWith(s.toLowerCase()) ||
+          element.title.toLowerCase().contains(s.toLowerCase())) {
+        SearchProducts.add(element);
+
+        notifyListeners();
+      }
+    });
+  }
+
+///////////////////////////////////////////////////////////////////////////////////////
 }
