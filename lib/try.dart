@@ -1,33 +1,62 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:ecommerce/authentication.dart';
-import 'package:ecommerce/signupScreens/mainOtions.dart';
-import 'package:firebase_auth/firebase_auth.dart';
-import 'package:firebase_database/firebase_database.dart';
-import 'package:http/http.dart' as http;
 import 'package:ecommerce/firebaseProvider.dart';
 import 'package:flutter/material.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:provider/provider.dart';
-import 'package:shimmer/shimmer.dart';
 
+// ignore: camel_case_types
 class trial extends StatelessWidget {
   //const try({Key? key}) : super(key: key);
+  var image;
+  var compressed;
+
+  Future getImage() async {
+    try {
+      XFile? file = await ImagePicker().pickImage(
+        source: ImageSource.gallery,
+      );
+      image = file;
+      return image;
+    } catch (e) {
+      throw (e);
+    }
+  }
+
+  var pi;
 
   @override
   Widget build(BuildContext context) {
-    var prod = [];
     var fire = Provider.of<FirebaseProvider>(context);
-
-    var firebaseDatabase = FirebaseDatabase.instance;
-    var auth = Provider.of<Auth>(context);
-    //auth.getUser();
-    // var ref = firebaseDatabase.reference().child('Products');
-   // FirebaseAuth.instance.signOut();
-    // FirebaseFirestore.instance
-    //     .collection('Users')
-    //     .doc(FirebaseAuth.instance.currentUser!.uid)
-    //     .update({
-    //   'CART': [{}],
-    // });
-    return Container();
+    return Scaffold(
+      appBar: AppBar(
+        elevation: 0,
+      ),
+      body: SingleChildScrollView(
+        child: Column(
+          children: [
+            Center(
+              child: Text(fire.result.toString()),
+            ),
+            Center(
+              child: GestureDetector(
+                onTap: () async {
+                  // await fire.compressFile().then((value) => image = value);
+                  // compressed = fire.compressed;
+                  // fire.notifyListeners();
+                  await fire.updateData().then((value) {
+                    pi = value.toString();
+                  });
+                  fire.notifyListeners();
+                },
+                child: Container(
+                  height: 50,
+                  width: 70,
+                  color: Colors.blue,
+                ),
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
   }
 }

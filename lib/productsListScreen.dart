@@ -9,54 +9,9 @@ class ProductListScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
 
-      body: Column(
-               children: [
-                 Container(
-                   margin: EdgeInsets.only(left:10,right: 10,top: 10,bottom: 10),
-        
-                   child:
-                TextFormField(
-              //  strutStyle: StrutStyle.disabled,
-                
-                   decoration: InputDecoration(
-                     fillColor: Colors.white,
-                     border: OutlineInputBorder(
-
-                       borderRadius:BorderRadius.circular(10),
-                       borderSide: BorderSide(width: 10,color:Colors.grey),
-                       
-                     ),
-                     disabledBorder:OutlineInputBorder(
-
-                       borderRadius:BorderRadius.circular(10),
-                       borderSide: BorderSide(color:Colors.grey),
-                       
-                     ) ,
-                     focusColor: Colors.indigo,
-                     
-                     hoverColor: Colors.deepPurple,
-                     //enabled: true,
-                     focusedBorder: OutlineInputBorder(
-
-                       borderRadius:BorderRadius.circular(10),
-                       borderSide: BorderSide(width: 2,color:Colors.grey),
-                       
-                     )
-                     
-                   ),
-                   cursorColor: Colors.purple,
-                   //autofocus: true,
-                   onTap: ()
-                   {
-                     FocusScope.of(context).requestFocus();                   },
-                  onEditingComplete: (){
-                    FocusScope.of(context).unfocus();
-                  },
-                ),
-                 ),
-                   Expanded(
-                     child: ListView.builder(
-                      
+      body: ListView.builder(
+                      physics: NeverScrollableScrollPhysics(),
+                      shrinkWrap: true,
                        itemBuilder:((ctx,index){
                          return Container(
                            margin: EdgeInsets.all(2),
@@ -137,10 +92,8 @@ class ProductListScreen extends StatelessWidget {
                        }),
                        itemCount: Product.length,
                        ),
-                   ),
-               ],
-               
-             ),
+                   
+             
     );
   }
 }

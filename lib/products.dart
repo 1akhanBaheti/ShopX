@@ -5,17 +5,24 @@ class ProductClass {
   String category;
   bool isFavourite = false;
   String imageUrl;
+  List<dynamic> packaging;
+  String description;
 
   ProductClass(
-      {required this.id,
+      {
+      required this.id,
+      required this.packaging,
       required this.category,
       required this.price,
       required this.title,
-      required this.imageUrl});
+      required this.imageUrl,
+      required this.description});
 
   factory ProductClass.fromMap(Map<String, dynamic> data) {
     return ProductClass(
-       category: data['category'],
+      packaging: data['packaging'],
+        description: data['decription'],
+        category: data['category'],
         id: data['id'],
         price: 2,
         title: data['title'],
@@ -23,6 +30,7 @@ class ProductClass {
   }
 }
 
+// ignore: non_constant_identifier_names
 var Product = [
   {
     "id": 1,

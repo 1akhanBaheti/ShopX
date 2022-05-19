@@ -1,13 +1,17 @@
+import 'package:cached_network_image/cached_network_image.dart';
+import 'package:ecommerce/firebaseProvider.dart';
 import 'package:ecommerce/products.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:hexcolor/hexcolor.dart';
+import 'package:provider/provider.dart';
+
 
 class Popular extends StatelessWidget {
   //const Popular({Key? key}) : super(//key: key);
 
   @override
   Widget build(BuildContext context) {
+    var fire =Provider.of<FirebaseProvider>(context);
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.deepPurple,
@@ -22,6 +26,8 @@ class Popular extends StatelessWidget {
             itemBuilder: ((ctx, index) {
               return InkWell(
                 onTap: ()=>Navigator.of(context).pushNamed('toProductDetailScreen',arguments: ProductClass(
+                         packaging: Product[index]['packaging'] as List<Map<String,dynamic>>, 
+                         description: Product[index]['description'] as String,
                          category: Product[index]['category'] as String,
                             id: Product[index]['id'] as int,
                             price: Product[index]['price'] as int,
@@ -63,9 +69,11 @@ class Popular extends StatelessWidget {
                               //color: Colors.amber,
                               child: FittedBox(
                                 fit: BoxFit.contain,
-                                child: Image.network(Product[index]['image'] as String),
+                                child:
+                                CachedNetworkImage(imageUrl: fire.Products[index].imageUrl)
+                                ),
                               ),
-                            ),
+                            
                             Container(
 
                               height: 200,
@@ -76,11 +84,11 @@ class Popular extends StatelessWidget {
                               ),
                             ),
                             
-                            Center(
-                              child: Container(
+                           
+                               Container(
                                 margin: EdgeInsets.only(left: 7),
-                                child: Text(Product[index]['title'] as String,maxLines: 2,overflow: TextOverflow.ellipsis,style: GoogleFonts.ptSans(fontWeight: FontWeight.w500,fontSize: 16),),
-                              ),
+                                child: Text(fire.Products[index].title,maxLines: 2,overflow: TextOverflow.ellipsis,style: GoogleFonts.ptSans(fontWeight: FontWeight.w500,fontSize: 16),),
+                              
                             ),
                            
                             SizedBox(height: 7,),
@@ -88,7 +96,7 @@ class Popular extends StatelessWidget {
                              Container(
                           margin: EdgeInsets.only(left: 4, right: 4),
                           child: Text(
-                            Product[index]['category'] as String,
+                            fire.Products[index].category,
                             style: TextStyle(
                               color: Colors.grey,
                               //fontSize: 14,
@@ -122,7 +130,7 @@ class Popular extends StatelessWidget {
                            
                              Container(
                               margin: EdgeInsets.only(left: 7),
-                              child: Text("\$"+Product[index]['price'].toString(),maxLines: 2,overflow: TextOverflow.ellipsis,style: TextStyle(fontSize: 18,fontWeight: FontWeight.bold,color:Colors.black),),
+                              child: Text("₹"+fire.Products[index].price.toString(),maxLines: 2,overflow: TextOverflow.ellipsis,style: TextStyle(fontSize: 18,fontWeight: FontWeight.bold,color:Colors.black),),
                             ),
                           ],
                         ),

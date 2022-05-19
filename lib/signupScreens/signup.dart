@@ -67,7 +67,7 @@ class _SignupState extends State<Signup> {
                             TextSpan(
                               children: [
                                 TextSpan(
-                                    text: '${email}',
+                                    text: '$email',
                                     style: GoogleFonts.lato(
                                       color: Colors.white,
                                       fontSize: 18,
