@@ -25,7 +25,7 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
   @override
   Widget build(BuildContext context) {
   //  print('llllllk');
-    // var categorySelector = false;
+  // var categorySelector = false;
     var data = ModalRoute.of(context)!.settings.arguments as ProductClass;
     var vider = Provider.of<provider>(context, listen: true);
     var checkoutProvider = Provider.of<CheckoutProvider>(context);
@@ -176,7 +176,8 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
                             Container(
                               margin: EdgeInsets.only(left: 5),
                               child: Text(
-                                "₹${data.packaging[categorySelected]['price']}",
+                                "\$${data.price}",
+                                
                                 style: TextStyle(
                                   fontSize: 24,
                                   color: Colors.black,
@@ -212,71 +213,72 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
                           ),
                         ),
                         //SizedBox(height:20),
-                        /////////////////////////////////////////////////////////////////////////////////
-                        Container(
-                          //  height: 60,
-                          margin: EdgeInsets.only(left: 10),
-                          child: GridView.builder(
-                              // scrollDirection: Axis.horizontal,
-                              physics: NeverScrollableScrollPhysics(),
-                              itemCount: data.packaging.length,
-                              gridDelegate:
-                                  SliverGridDelegateWithFixedCrossAxisCount(
-                                      crossAxisSpacing: 3,
-                                      childAspectRatio: 5 / 3,
-                                      crossAxisCount: 4),
-                              shrinkWrap: true,
-                              itemBuilder: ((ctx, index) {
-                                return InkWell(
-                                    onTap: () {
-                                      setState(() {
-                                        categorySelected = index;
-                                      });
-                                    },
-                                    child: categorySelected == index
-                                        ? Container(
-                                            child: Card(
-                                                color: Colors.grey.shade300,
-                                                shape: RoundedRectangleBorder(
-                                                    borderRadius:
-                                                        BorderRadius.circular(
-                                                            6),
-                                                    side: BorderSide(
-                                                      width: 1,
-                                                      color:
-                                                          Colors.grey.shade200,
-                                                    )),
-                                                elevation: 2,
-                                                child: Center(
-                                                    child: Text(
-                                                        '${data.packaging[index]['qty']}',
-                                                        style: TextStyle(
-                                                            fontWeight:
-                                                                FontWeight
-                                                                    .bold)))),
-                                          )
-                                        : Container(
-                                            child: Card(
-                                                shape: RoundedRectangleBorder(
-                                                    borderRadius:
-                                                        BorderRadius.circular(
-                                                            6),
-                                                    side: BorderSide(
-                                                      width: 1,
-                                                      color:
-                                                          Colors.grey.shade200,
-                                                    )),
-                                                elevation: 2,
-                                                child: Center(
-                                                    child: Text(
-                                                        '${data.packaging[index]['qty']}',
-                                                        style: TextStyle(
-                                                            fontWeight:
-                                                                FontWeight
-                                                                    .bold)))),
-                                          ));
-                              })),
-                        ),
+                       
+                         //////////////////////////////////PACKAGING////////////////////////////////////////////
+                        // Container(
+                        //   //  height: 60,
+                        //   margin: EdgeInsets.only(left: 10),
+                        //   child: GridView.builder(
+                        //       // scrollDirection: Axis.horizontal,
+                        //       physics: NeverScrollableScrollPhysics(),
+                        //       itemCount: data.packaging.length,
+                        //       gridDelegate:
+                        //           SliverGridDelegateWithFixedCrossAxisCount(
+                        //               crossAxisSpacing: 3,
+                        //               childAspectRatio: 5 / 3,
+                        //               crossAxisCount: 4),
+                        //       shrinkWrap: true,
+                        //       itemBuilder: ((ctx, index) {
+                        //         return InkWell(
+                        //             onTap: () {
+                        //               setState(() {
+                        //                 categorySelected = index;
+                        //               });
+                        //             },
+                        //             child: categorySelected == index
+                        //                 ? Container(
+                        //                     child: Card(
+                        //                         color: Colors.grey.shade300,
+                        //                         shape: RoundedRectangleBorder(
+                        //                             borderRadius:
+                        //                                 BorderRadius.circular(
+                        //                                     6),
+                        //                             side: BorderSide(
+                        //                               width: 1,
+                        //                               color:
+                        //                                   Colors.grey.shade200,
+                        //                             )),
+                        //                         elevation: 2,
+                        //                         child: Center(
+                        //                             child: Text(
+                        //                                 '${data.packaging[index]['qty']}',
+                        //                                 style: TextStyle(
+                        //                                     fontWeight:
+                        //                                         FontWeight
+                        //                                             .bold)))),
+                        //                   )
+                        //                 : Container(
+                        //                     child: Card(
+                        //                         shape: RoundedRectangleBorder(
+                        //                             borderRadius:
+                        //                                 BorderRadius.circular(
+                        //                                     6),
+                        //                             side: BorderSide(
+                        //                               width: 1,
+                        //                               color:
+                        //                                   Colors.grey.shade200,
+                        //                             )),
+                        //                         elevation: 2,
+                        //                         child: Center(
+                        //                             child: Text(
+                        //                                 '${data.packaging[index]['qty']}',
+                        //                                 style: TextStyle(
+                        //                                     fontWeight:
+                        //                                         FontWeight
+                        //                                             .bold)))),
+                        //                   ));
+                        //       })),
+                        // ),
 
                         SizedBox(
                           height: 15,
@@ -414,7 +416,7 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
                                               Text('Please Log in First!')));
                                 } else {
                                   var item = ProductClass(
-                                    packaging: data.packaging,
+                                   // packaging: data.packaging,
                                     description: data.description,
                                     category: data.category,
                                     id: data.id,
@@ -448,7 +450,7 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
                                     await vider
                                         .addCartItems(
                                           Cart(
-                                            packagingIndex:categorySelected,
+                                            //packagingIndex:categorySelected,
                                             cartCounter: int.parse(_qty),
                                             productClass: item))
                                         .then((value) {

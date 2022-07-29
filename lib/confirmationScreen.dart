@@ -75,9 +75,8 @@ class Confirmation extends StatelessWidget {
             ),
             InkWell(
               onTap: () {
-                Navigator.of(context).popAndPushNamed(
-                  'toOrdersScreen',
-                );
+                Navigator.of(context)
+                    .pushNamedAndRemoveUntil('toMainScreen', (route) => false);
               },
               child: Container(
                 //height:40,

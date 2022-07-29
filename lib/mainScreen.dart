@@ -41,7 +41,7 @@ class _MainscreenState extends State<Mainscreen> {
   }
 
   Widget build2(BuildContext context) {
-   //print('rendered');
+    //print('rendered');
     var current = Provider.of<provider>(context, listen: false);
     var fireprov = Provider.of<FirebaseProvider>(context, listen: false);
 
@@ -306,7 +306,7 @@ class _MainscreenState extends State<Mainscreen> {
                                                     margin: EdgeInsets.only(
                                                         left: 4),
                                                     child: Text(
-                                                      "₹" +
+                                                      "\$" +
                                                           fireprov
                                                               .Products[index]
                                                               .price
@@ -314,7 +314,8 @@ class _MainscreenState extends State<Mainscreen> {
                                                       style: TextStyle(
                                                           fontWeight:
                                                               FontWeight.bold,
-                                                          color: Colors.red.shade900),
+                                                          color: Colors
+                                                              .red.shade900),
                                                       maxLines: 1,
                                                       overflow:
                                                           TextOverflow.ellipsis,
@@ -324,7 +325,7 @@ class _MainscreenState extends State<Mainscreen> {
                                           ),
                                         );
                                       }),
-                                      itemCount: 25,
+                                      itemCount: fireprov.Products.length,
 
                                       // shrinkWrap: true
                                     );
@@ -557,7 +558,7 @@ class _MainscreenState extends State<Mainscreen> {
                                                             left: 10,
                                                           ),
                                                           child: Text(
-                                                            "₹" +
+                                                            "\$" +
                                                                 fireprov
                                                                     .Products[
                                                                         index]

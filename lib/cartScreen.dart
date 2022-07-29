@@ -1,4 +1,5 @@
 
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:ecommerce/Provider.dart';
 import 'package:ecommerce/checkoutProvider.dart';
 import 'package:flutter/material.dart';
@@ -156,10 +157,12 @@ class _CartScreenState extends State<CartScreen> {
                                               height: 100,
                                               child: FittedBox(
                                                 fit: BoxFit.contain,
-                                                child: Image.network(cartItems
+                                                child:
+                                                CachedNetworkImage(imageUrl:cartItems
                                                     .cartitems[index]
                                                     .productClass
-                                                    .imageUrl),
+                                                    .imageUrl )
+                                                
                                               ),
                                             ),
                                             Container(
@@ -590,7 +593,9 @@ class _CartScreenState extends State<CartScreen> {
                                         height: 100,
                                         child: FittedBox(
                                           fit: BoxFit.contain,
-                                          child: Image.network(cartItems
+                                          child: CachedNetworkImage(
+                                            imageUrl: 
+                                            cartItems
                                               .saveForLater[index1].imageUrl),
                                         ),
                                       ),

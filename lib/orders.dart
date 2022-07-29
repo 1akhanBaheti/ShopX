@@ -90,7 +90,8 @@ class Orders extends StatelessWidget {
                                               padding: EdgeInsets.only(
                                                   top: 15, left: 10, right: 4),
                                               child: Text(
-                                                "${checkoutProvider.orders[index].products[0].productClass.title} and ${checkoutProvider.orders[index].products.length} others",
+                                                 checkoutProvider.orders[index].products.length>1?
+                                                "${checkoutProvider.orders[index].products[0].productClass.title} and ${checkoutProvider.orders[index].products.length-1} others":checkoutProvider.orders[index].products[0].productClass.title,
                                                 maxLines: 3,
                                                 overflow: TextOverflow.ellipsis,
                                                 style: GoogleFonts.lato(

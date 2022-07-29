@@ -14,7 +14,11 @@ class Popular extends StatelessWidget {
     var fire =Provider.of<FirebaseProvider>(context);
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.deepPurple,
+        elevation: 0,
+        backgroundColor: Colors.white,
+        iconTheme: IconThemeData(
+          color: Colors.black
+        ),
       ),
       body: Container(
         //color: Colors.white,
@@ -26,7 +30,7 @@ class Popular extends StatelessWidget {
             itemBuilder: ((ctx, index) {
               return InkWell(
                 onTap: ()=>Navigator.of(context).pushNamed('toProductDetailScreen',arguments: ProductClass(
-                         packaging: Product[index]['packaging'] as List<Map<String,dynamic>>, 
+                        // packaging: Product[index]['packaging'] as List<Map<String,dynamic>>, 
                          description: Product[index]['description'] as String,
                          category: Product[index]['category'] as String,
                             id: Product[index]['id'] as int,
@@ -130,7 +134,7 @@ class Popular extends StatelessWidget {
                            
                              Container(
                               margin: EdgeInsets.only(left: 7),
-                              child: Text("₹"+fire.Products[index].price.toString(),maxLines: 2,overflow: TextOverflow.ellipsis,style: TextStyle(fontSize: 18,fontWeight: FontWeight.bold,color:Colors.black),),
+                              child: Text("\$"+fire.Products[index].price.toString(),maxLines: 2,overflow: TextOverflow.ellipsis,style: TextStyle(fontSize: 18,fontWeight: FontWeight.bold,color:Colors.black),),
                             ),
                           ],
                         ),
@@ -141,7 +145,7 @@ class Popular extends StatelessWidget {
               );
               
             }),
-            itemCount: Product.length,
+            itemCount: fire.Products.length,
             ),
       ),
     );

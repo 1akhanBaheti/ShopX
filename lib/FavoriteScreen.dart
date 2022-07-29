@@ -102,8 +102,8 @@ class Favourite extends StatelessWidget {
                               onTap: () => Navigator.of(context).pushNamed(
                                 'toProductDetailScreen',
                                 arguments: ProductClass(
-                                    packaging: favourite1
-                                        .favouriteItems[index].packaging,
+                                   // packaging: favourite1
+                                       // .favouriteItems[index].packaging,
                                     description: favourite1
                                         .favouriteItems[index].description,
                                     category: favourite1

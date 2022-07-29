@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:ecommerce/Componenets/SelectQuantity.dart';
 import 'package:ecommerce/checkoutProvider.dart';
 import 'package:flutter/material.dart';
@@ -203,7 +204,8 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
                                               height: 100,
                                               child: FittedBox(
                                                 fit: BoxFit.contain,
-                                                child: Image.network(
+                                                child: CachedNetworkImage(
+                                                  imageUrl: 
                                                     checkoutProvider
                                                         .checkoutItems[index]
                                                         .productClass

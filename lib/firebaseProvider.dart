@@ -39,7 +39,7 @@ class FirebaseProvider extends ChangeNotifier {
     //   print("RAN");
     try {
       List<ProductClass> loca = [];
-      var url = Uri.parse(credentials().realTimeDatabase + "Products2.json");
+      var url = Uri.parse(credentials().realTimeDatabase + "Products.json");
 
       var response = await https.get(url);
       var data = json.decode(response.body) as Map<String, dynamic>;
@@ -47,13 +47,14 @@ class FirebaseProvider extends ChangeNotifier {
       data.forEach((id, data) {
         //print(data['id']);
         loca.add(ProductClass(
-            packaging: data['packaging'],
+            //packaging: data['packaging']?data['packaging']:null,
             description: data['description'],
             category: data['category'],
             id: data['id'],
             price: data['price'],
             title: data['title'],
-            imageUrl: data['imageUrl'][0].toString().replaceAll(RegExp(r'dl=0'),'raw=1')));
+            imageUrl: data['image']));
+            //imageUrl: data['imageUrl'][0].toString().replaceAll(RegExp(r'dl=0'),'raw=1')));
       });
       Products = loca;
       //print(Products.length);
@@ -266,7 +267,7 @@ class FirebaseProvider extends ChangeNotifier {
         var image = [];
         image.add(result['${Products[i].title.trimRight()}']);
         var temp = {
-          'packaging': Products[i].packaging,
+         // 'packaging': Products[i].packaging,
           "description": Products[i].description,
           'category': Products[i].category,
           'id': i + 1,

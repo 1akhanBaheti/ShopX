@@ -48,10 +48,10 @@ class CheckoutProvider extends ChangeNotifier {
         checkoutTotal = 0;
         temp1.forEach((element) {
           checkoutItems.add(Cart(
-              packagingIndex: element['packagingIndex'],
+              //packagingIndex: element['packagingIndex'],
               cartCounter: element['cartCounter'],
               productClass: ProductClass(
-                  packaging: element['packaging'],
+                 // packaging: element['packaging'],
                   id: element['id'],
                   category: element['category'],
                   price: element['price'],
@@ -119,12 +119,12 @@ class CheckoutProvider extends ChangeNotifier {
           'id': element.productClass.id,
           'imageUrl': element.productClass.imageUrl,
           'isFavourite': element.productClass.isFavourite,
-          'packaging': element.productClass.packaging,
+         // 'packaging': element.productClass.packaging,
           'price': element.productClass.price,
           'title': element.productClass.title,
           'description': element.productClass.description
         },
-        'packagingIndex': element.packagingIndex,
+        //'packagingIndex': element.packagingIndex,
         'cartCounter': element.cartCounter,
         'totalPrice': element.productClass.price * element.cartCounter,
         //'address': particularAdress,
@@ -281,13 +281,13 @@ class CheckoutProvider extends ChangeNotifier {
           temp.forEach((e) {
             //print(e);
             products.add(Cart(
-                packagingIndex: e['packagingIndex'],
+                //packagingIndex: e['packagingIndex'],
                 productClass: ProductClass(
                   category: e['Product']['category'],
                   description: e['Product']['description'],
                   id: e['Product']['id'],
                   imageUrl: e['Product']['imageUrl'],
-                  packaging: e['Product']['packaging'],
+                 // packaging: e['Product']['packaging'],
                   title: e['Product']['title'],
                   price: e['Product']['price'],
                 ),

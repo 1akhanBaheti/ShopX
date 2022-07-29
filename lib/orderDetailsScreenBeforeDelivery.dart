@@ -122,7 +122,7 @@ class OrderDetailsScreenBeforeDelivery extends StatelessWidget {
                       Container(
                         margin: EdgeInsets.only(top: 2, left: 15),
                         child: Text(
-                         '₹'+item.totalPrice.toString(),
+                         '\$'+item.totalPrice.toString(),
                           style: GoogleFonts.lato(
                               fontSize: 19, color: Colors.black),
                         ),
@@ -192,7 +192,7 @@ class OrderDetailsScreenBeforeDelivery extends StatelessWidget {
                                     Container(
                                       margin: EdgeInsets.only(left: 10),
                                       child: Text(
-                                        "₹"
+                                        "\$"
                                         "${item.products[index].productClass.price * item.products[index].cartCounter}",
                                         style: TextStyle(
                                             fontSize: 23,

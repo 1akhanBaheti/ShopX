@@ -39,10 +39,10 @@ class provider extends ChangeNotifier {
       temp.forEach((element) {
         cartTotal += element['price'] * element['cartCounter'] as int;
         cartitems.add(Cart(
-            packagingIndex: element['packagingIndex'],
+            //packagingIndex: element['packagingIndex'],
             cartCounter: element['cartCounter'],
             productClass: ProductClass(
-                packaging: element['packaging'],
+               // packaging: element['packaging'],
                 description: element['description'],
                 id: element['id'],
                 category: element['category'],
@@ -62,8 +62,8 @@ class provider extends ChangeNotifier {
     await getCartItems();
 
     temp.add({
-      'packagingIndex': cart.packagingIndex,
-      'packaging': cart.productClass.packaging,
+      //'packagingIndex': cart.packagingIndex,
+     // 'packaging': cart.productClass.packaging,
       'description': cart.productClass.description,
       'id': cart.productClass.id,
       'title': cart.productClass.title,
@@ -104,7 +104,7 @@ class provider extends ChangeNotifier {
        // print(temp);
         temp.forEach((element) {
           favouriteItems.add(ProductClass(
-              packaging: element['packaging'],
+             // packaging: element['packaging'],
               description: element['description'],
               id: element['id'],
               category: element['category'],
@@ -130,7 +130,7 @@ class provider extends ChangeNotifier {
         favouriteTemp = await value.data()!['wishlist'];
 
         favouriteTemp.add({
-          'packaging': productClass.packaging,
+          //'packaging': productClass.packaging,
           'description': productClass.description,
           'id': productClass.id,
           'title': productClass.title,
@@ -179,7 +179,8 @@ class provider extends ChangeNotifier {
       var element = Cart(
           cartCounter: 1,
           productClass: favouriteItems.elementAt(index),
-          packagingIndex: 0);
+          // packagingIndex: 0
+          );
 
       await addCartItems(element);
       await removeFromFavourite(element.productClass);
@@ -257,8 +258,8 @@ class provider extends ChangeNotifier {
       await instance.get().then((value) async {
         latertemp = value.data()!['saveForLater'];
         latertemp.add({
-          'packagingIndex': cart.packagingIndex,
-          'packaging': cart.productClass.packaging,
+         // 'packagingIndex': cart.packagingIndex,
+         // 'packaging': cart.productClass.packaging,
           'description': cart.productClass.description,
           'id': cart.productClass.id,
           'title': cart.productClass.title,
@@ -277,7 +278,7 @@ class provider extends ChangeNotifier {
 
         latertemp.forEach((element) {
           saveForLater.add(ProductClass(
-              packaging: element['packaging'],
+              //packaging: element['packaging'],
               description: element['description'],
               id: element['id'],
               category: element['category'],
@@ -304,7 +305,7 @@ class provider extends ChangeNotifier {
         saveForLaterTemp = temp;
         temp.forEach((element) {
           saveForLater.add(ProductClass(
-              packaging: element['packaging'],
+             // packaging: element['packaging'],
               description: element['description'],
               id: element['id'],
               category: element['category'],
@@ -324,7 +325,7 @@ class provider extends ChangeNotifier {
         .doc(FirebaseAuth.instance.currentUser!.uid);
 
     temp.add({
-      'packaging': saveForLater[index].packaging,
+     // 'packaging': saveForLater[index].packaging,
       'id': saveForLater[index].id,
       'title': saveForLater[index].title,
       'price': saveForLater[index].price,
@@ -355,7 +356,7 @@ class provider extends ChangeNotifier {
     saveForLater.removeAt(index);
     saveForLater.forEach((element) {
       latertemp.add({
-        "packaging": element.packaging,
+       // "packaging": element.packaging,
         'id': element.id,
         'title': element.title,
         'price': element.price,
