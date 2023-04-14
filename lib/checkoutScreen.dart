@@ -87,7 +87,7 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
                           color: Colors.grey.shade200,
                           height: 10,
                         ),
-                        Container(
+                        address!=null?Container(
                           // height: 100,
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
@@ -136,7 +136,7 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
                               ),
                             ],
                           ),
-                        ),
+                        ):Container(),
                         InkWell(
                           onTap: () {
                             Navigator.of(context)

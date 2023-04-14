@@ -32,7 +32,11 @@ class Auth extends ChangeNotifier {
             'mobile no.': null,
             'name': name,
             'wishlist': [],
-            'cart': [{}],
+            'checkoutItems':[],
+            'cart': [],
+            'saveForLater': [],
+            'orders':{},
+            "address":[]
           })
           .then((value) => null)
           .catchError((e) {});

@@ -71,7 +71,7 @@ class Drawer1 extends StatelessWidget {
                                                 .phoneNumber !=
                                             ''
                                         ? Text(
-                                            '9685628805',
+                                            '',
                                             style: GoogleFonts.lato(
                                                 color: Colors.black,
                                                 fontSize: 14,

@@ -40,9 +40,8 @@ class _MainSignupLoginState extends State<MainSignupLogin> {
     return Scaffold(
       resizeToAvoidBottomInset: true,
       body: Stack(children: [
-        InkWell(
-          splashColor: Colors.transparent,
-          highlightColor: Colors.transparent,
+        GestureDetector(
+          
           onTap: () {
             if (!focus.hasPrimaryFocus) focus.unfocus();
           },
@@ -327,29 +326,29 @@ class _MainSignupLoginState extends State<MainSignupLogin> {
                                 ),
                               ),
                             ),
-                            Container(
-                              margin: EdgeInsets.only(bottom: 10, left: 23),
-                              child: Row(
-                                children: [
-                                  Container(
-                                    child: Text(
-                                      "Don\'t have an account?  ",
-                                      style: GoogleFonts.lato(
-                                          color: Colors.white, fontSize: 18),
-                                    ),
-                                  ),
-                                  Container(
-                                    child: Text(
-                                      "Sign up",
-                                      style: GoogleFonts.lato(
-                                          color: Colors.teal.shade400,
-                                          fontSize: 18,
-                                          fontWeight: FontWeight.bold),
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            ),
+                            // Container(
+                            //   margin: EdgeInsets.only(bottom: 10, left: 23),
+                            //   child: Row(
+                            //     children: [
+                            //       Container(
+                            //         child: Text(
+                            //           "Don\'t have an account?  ",
+                            //           style: GoogleFonts.lato(
+                            //               color: Colors.white, fontSize: 18),
+                            //         ),
+                            //       ),
+                            //       Container(
+                            //         child: Text(
+                            //           "Sign up",
+                            //           style: GoogleFonts.lato(
+                            //               color: Colors.teal.shade400,
+                            //               fontSize: 18,
+                            //               fontWeight: FontWeight.bold),
+                            //         ),
+                            //       ),
+                            //     ],
+                            //   ),
+                            // ),
                             // Container(
                             //   margin: EdgeInsets.only(bottom: 15, left: 23),
                             //   child: Row(
@@ -373,16 +372,16 @@ class _MainSignupLoginState extends State<MainSignupLogin> {
                             //     ],
                             //   ),
                             // ),
-                            Container(
-                              margin: EdgeInsets.only(bottom: 20, left: 23),
-                              child: Text(
-                                "Forgot your password?",
-                                style: GoogleFonts.lato(
-                                    color: Colors.teal.shade400,
-                                    fontSize: 18,
-                                    fontWeight: FontWeight.bold),
-                              ),
-                            ),
+                            // Container(
+                            //   margin: EdgeInsets.only(bottom: 20, left: 23),
+                            //   child: Text(
+                            //     "Forgot your password?",
+                            //     style: GoogleFonts.lato(
+                            //         color: Colors.teal.shade400,
+                            //         fontSize: 18,
+                            //         fontWeight: FontWeight.bold),
+                            //   ),
+                            // ),
                           ],
                         ),
                       ),

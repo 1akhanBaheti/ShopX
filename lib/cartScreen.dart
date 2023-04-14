@@ -97,17 +97,18 @@ class _CartScreenState extends State<CartScreen> {
                           style: TextStyle(color: Colors.black, fontSize: 18),
                         ),
                         onPressed: () async {
-                          await checkoutProvider.getaddress().then((value) {
-                            if (checkoutProvider.address.length == 0) {
-                              Navigator.pushNamed(
-                                  context, 'Base_delievery_address');
-                            }
-                          });
-
-                          await checkoutProvider
+                          await checkoutProvider.getaddress().then((value) async{
+                            // if (checkoutProvider.address.length == 0) {
+                            //   Navigator.pushNamed(
+                            //       context, 'Base_delievery_address');
+                            // }else{
+                                await checkoutProvider
                               .updateCheckoutItems(cartItems.temp)
                               .then((value) => Navigator.pushNamed(
                                   context, 'toCheckoutScreen'));
+                            //}
+                          });
+                     
                         },
                         style: ButtonStyle(
                             backgroundColor:
