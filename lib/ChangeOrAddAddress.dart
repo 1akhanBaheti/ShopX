@@ -67,7 +67,7 @@ class ChangeOrAddAdress extends StatelessWidget {
                         height: 1,
                         color: Colors.grey.shade200,
                       ),
-                      Container(
+                      address.isNotEmpty?Container(
                           margin: EdgeInsets.all(10),
                           child: Text(
                             'Personal Addresses',
@@ -75,7 +75,7 @@ class ChangeOrAddAdress extends StatelessWidget {
                                 color: Colors.black,
                                 fontSize: 21,
                                 fontWeight: FontWeight.bold),
-                          )),
+                          )):Container(),
                       Container(
                         child: ListView.builder(
                             itemCount: address.length,

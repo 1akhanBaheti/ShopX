@@ -42,7 +42,7 @@ class provider extends ChangeNotifier {
             //packagingIndex: element['packagingIndex'],
             cartCounter: element['cartCounter'],
             productClass: ProductClass(
-               // packaging: element['packaging'],
+                // packaging: element['packaging'],
                 description: element['description'],
                 id: element['id'],
                 category: element['category'],
@@ -63,7 +63,7 @@ class provider extends ChangeNotifier {
 
     temp.add({
       //'packagingIndex': cart.packagingIndex,
-     // 'packaging': cart.productClass.packaging,
+      // 'packaging': cart.productClass.packaging,
       'description': cart.productClass.description,
       'id': cart.productClass.id,
       'title': cart.productClass.title,
@@ -101,10 +101,10 @@ class provider extends ChangeNotifier {
       await instance.get().then((value) async {
         temp = await value.data()!['wishlist'];
         favouriteItems = [];
-       // print(temp);
+        // print(temp);
         temp.forEach((element) {
           favouriteItems.add(ProductClass(
-             // packaging: element['packaging'],
+              // packaging: element['packaging'],
               description: element['description'],
               id: element['id'],
               category: element['category'],
@@ -162,9 +162,9 @@ class provider extends ChangeNotifier {
             .removeWhere((element) => element['id'] == productClass.id);
 
         //int index;
-       // print(favouriteItems.length);
+        // print(favouriteItems.length);
         favouriteItems.removeWhere((element) => element.id == productClass.id);
-       // print(favouriteItems.length);
+        // print(favouriteItems.length);
         instance.update({'wishlist': favouriteTemp}).then((value) {
           notifyListeners();
         });
@@ -177,10 +177,10 @@ class provider extends ChangeNotifier {
   Future moveToBagFromFavourite(int index) async {
     try {
       var element = Cart(
-          cartCounter: 1,
-          productClass: favouriteItems.elementAt(index),
-          // packagingIndex: 0
-          );
+        cartCounter: 1,
+        productClass: favouriteItems.elementAt(index),
+        // packagingIndex: 0
+      );
 
       await addCartItems(element);
       await removeFromFavourite(element.productClass);
@@ -200,9 +200,9 @@ class provider extends ChangeNotifier {
 
   Future addcartItems(int i) async {
     cartitems[i].cartCounter++;
-   // print(cartTotal);
+    // print(cartTotal);
     cartTotal += cartitems[i].productClass.price;
-   // print(cartTotal);
+    // print(cartTotal);
 
     temp[i]['cartCounter'] = cartitems[i].cartCounter;
 
@@ -258,8 +258,8 @@ class provider extends ChangeNotifier {
       await instance.get().then((value) async {
         latertemp = value.data()!['saveForLater'];
         latertemp.add({
-         // 'packagingIndex': cart.packagingIndex,
-         // 'packaging': cart.productClass.packaging,
+          // 'packagingIndex': cart.packagingIndex,
+          // 'packaging': cart.productClass.packaging,
           'description': cart.productClass.description,
           'id': cart.productClass.id,
           'title': cart.productClass.title,
@@ -301,11 +301,11 @@ class provider extends ChangeNotifier {
     saveForLater = [];
     try {
       instance.get().then((value) async {
-        temp = await value.data()!['saveForLater'];
+        temp = await value.data()?['saveForLater'];
         saveForLaterTemp = temp;
         temp.forEach((element) {
           saveForLater.add(ProductClass(
-             // packaging: element['packaging'],
+              // packaging: element['packaging'],
               description: element['description'],
               id: element['id'],
               category: element['category'],
@@ -325,7 +325,7 @@ class provider extends ChangeNotifier {
         .doc(FirebaseAuth.instance.currentUser!.uid);
 
     temp.add({
-     // 'packaging': saveForLater[index].packaging,
+      // 'packaging': saveForLater[index].packaging,
       'id': saveForLater[index].id,
       'title': saveForLater[index].title,
       'price': saveForLater[index].price,
@@ -356,7 +356,7 @@ class provider extends ChangeNotifier {
     saveForLater.removeAt(index);
     saveForLater.forEach((element) {
       latertemp.add({
-       // "packaging": element.packaging,
+        // "packaging": element.packaging,
         'id': element.id,
         'title': element.title,
         'price': element.price,
@@ -411,9 +411,7 @@ class provider extends ChangeNotifier {
   }
 
   /////////////////////////////////SOCIAL AUTHENTICATION//////////////////////////////////
-  Future facebookLogin() async {
-  
-  }
+  Future facebookLogin() async {}
   ///////////////////////////////////////////////////////////////////////////////////////
 }
 

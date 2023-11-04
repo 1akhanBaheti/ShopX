@@ -229,12 +229,11 @@ class _AccountState extends State<Account> {
                   GestureDetector(
                     onTap: () async {
                       Map<String, dynamic> orders = {};
-                      await FirebaseDatabase.instance
-                          .reference()
+                      await FirebaseDatabase.instance.ref()
                           .child('Orders')
                           .once()
                           .then((value) {
-                        orders = value.value as Map<String, dynamic>;
+                        orders = value.snapshot.value as Map<String, dynamic>;
                       });
                       orders.forEach((key, value) {
                         if (key ==

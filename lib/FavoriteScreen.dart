@@ -91,12 +91,14 @@ class Favourite extends StatelessWidget {
                       child: MediaQuery.removePadding(
                         context: context,
                         removeTop: true,
-                        child: StaggeredGridView.countBuilder(
+                        child: GridView.builder(
                           shrinkWrap: true,
+                         gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                           crossAxisCount: 2,
+                          childAspectRatio: 2/3.6
+                          ),
                           itemCount: favourite1.favouriteItems.length,
-                          mainAxisSpacing: 4.0,
-                          crossAxisSpacing: 4.0,
+                         
                           itemBuilder: (context, index) {
                             return InkWell(
                               onTap: () => Navigator.of(context).pushNamed(
@@ -274,7 +276,6 @@ class Favourite extends StatelessWidget {
                               ),
                             );
                           },
-                          staggeredTileBuilder: (index) => StaggeredTile.fit(1),
                         ),
                       ),
                     ),

@@ -34,9 +34,8 @@ class _SearchState extends State<Search> {
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
         home: Scaffold(
-          body: InkWell(
-            splashColor: Colors.transparent,
-            highlightColor: Colors.transparent,
+          body: GestureDetector(
+           
             onTap: () {
               if (!focusScope.hasPrimaryFocus)
                 focusScope.requestFocus(FocusNode());

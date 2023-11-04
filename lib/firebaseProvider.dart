@@ -79,10 +79,10 @@ class FirebaseProvider extends ChangeNotifier {
       if (element.title.toLowerCase().startsWith(s.toLowerCase()) ||
           element.title.toLowerCase().contains(s.toLowerCase())) {
         SearchProducts.add(element);
-
-        notifyListeners();
+        
       }
     });
+    notifyListeners();
   }
 
   var link = [];

@@ -1,5 +1,7 @@
 
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:ecommerce/products.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -59,7 +61,7 @@ class _DelieveryAdressState extends State<DelieveryAdress> {
                 child: Text(
                   'Add a new address',
                   style: GoogleFonts.lato(
-                      fontWeight: FontWeight.bold, fontSize: 30),
+                      fontWeight: FontWeight.normal, fontSize: 30),
                 ),
               ),
               SizedBox(
@@ -120,7 +122,7 @@ class _DelieveryAdressState extends State<DelieveryAdress> {
                   child: Text('Full name',
                       style: GoogleFonts.lato(
                           fontSize: 18,
-                          fontWeight: FontWeight.bold,
+                          fontWeight: FontWeight.normal,
                           color: Colors.black))),
               Container(
                 //  color: Colors.deepOrange,
@@ -165,7 +167,7 @@ class _DelieveryAdressState extends State<DelieveryAdress> {
                       child: Text('*This field is required',
                           style: GoogleFonts.lato(
                               fontSize: 17,
-                              fontWeight: FontWeight.bold,
+                              fontWeight: FontWeight.normal,
                               color: Colors.red)))
                   : Container(),
               SizedBox(height: 10),
@@ -174,7 +176,7 @@ class _DelieveryAdressState extends State<DelieveryAdress> {
                   child: Text('Mobile number',
                       style: GoogleFonts.lato(
                           fontSize: 18,
-                          fontWeight: FontWeight.bold,
+                          fontWeight: FontWeight.normal,
                           color: Colors.black))),
               Container(
                 decoration: BoxDecoration(
@@ -205,7 +207,7 @@ class _DelieveryAdressState extends State<DelieveryAdress> {
                       child: Text('*This field is required',
                           style: GoogleFonts.lato(
                               fontSize: 17,
-                              fontWeight: FontWeight.bold,
+                              fontWeight: FontWeight.normal,
                               color: Colors.red)))
                   : Container(),
               SizedBox(height: 10),
@@ -214,7 +216,7 @@ class _DelieveryAdressState extends State<DelieveryAdress> {
                   child: Text('Pincode',
                       style: GoogleFonts.lato(
                           fontSize: 18,
-                          fontWeight: FontWeight.bold,
+                          fontWeight: FontWeight.normal,
                           color: Colors.black))),
               Container(
                 decoration: BoxDecoration(
@@ -246,7 +248,7 @@ class _DelieveryAdressState extends State<DelieveryAdress> {
                       child: Text('*This field is required',
                           style: GoogleFonts.lato(
                               fontSize: 17,
-                              fontWeight: FontWeight.bold,
+                              fontWeight: FontWeight.normal,
                               color: Colors.red)))
                   : Container(),
               SizedBox(height: 10),
@@ -255,7 +257,7 @@ class _DelieveryAdressState extends State<DelieveryAdress> {
                   child: Text('Flat, House no, Building, Company, Apartment',
                       style: GoogleFonts.lato(
                           fontSize: 18,
-                          fontWeight: FontWeight.bold,
+                          fontWeight: FontWeight.normal,
                           color: Colors.black))),
               Container(
                 decoration: BoxDecoration(
@@ -287,7 +289,7 @@ class _DelieveryAdressState extends State<DelieveryAdress> {
                       child: Text('*This field is required',
                           style: GoogleFonts.lato(
                               fontSize: 17,
-                              fontWeight: FontWeight.bold,
+                              fontWeight: FontWeight.normal,
                               color: Colors.red)))
                   : Container(),
               SizedBox(height: 10),
@@ -296,7 +298,7 @@ class _DelieveryAdressState extends State<DelieveryAdress> {
                   child: Text('Area, Colony, Street, Sector, Village',
                       style: GoogleFonts.lato(
                           fontSize: 18,
-                          fontWeight: FontWeight.bold,
+                          fontWeight: FontWeight.normal,
                           color: Colors.black))),
               Container(
                 decoration: BoxDecoration(
@@ -328,7 +330,7 @@ class _DelieveryAdressState extends State<DelieveryAdress> {
                       child: Text('*This field is required',
                           style: GoogleFonts.lato(
                               fontSize: 17,
-                              fontWeight: FontWeight.bold,
+                              fontWeight: FontWeight.normal,
                               color: Colors.red)))
                   : Container(),
               SizedBox(height: 10),
@@ -337,7 +339,7 @@ class _DelieveryAdressState extends State<DelieveryAdress> {
                   child: Text('Landmark e.g. near Apollo Hospital',
                       style: GoogleFonts.lato(
                           fontSize: 18,
-                          fontWeight: FontWeight.bold,
+                          fontWeight: FontWeight.normal,
                           color: Colors.black))),
               Container(
                 decoration: BoxDecoration(
@@ -369,7 +371,7 @@ class _DelieveryAdressState extends State<DelieveryAdress> {
                       child: Text('*This field is required',
                           style: GoogleFonts.lato(
                               fontSize: 17,
-                              fontWeight: FontWeight.bold,
+                              fontWeight: FontWeight.normal,
                               color: Colors.red)))
                   : Container(),
               SizedBox(
@@ -380,7 +382,7 @@ class _DelieveryAdressState extends State<DelieveryAdress> {
                   child: Text('State',
                       style: GoogleFonts.lato(
                           fontSize: 18,
-                          fontWeight: FontWeight.bold,
+                          fontWeight: FontWeight.normal,
                           color: Colors.black))),
               Container(
                 margin: EdgeInsets.only(left: 20, right: 20),
@@ -444,18 +446,18 @@ class _DelieveryAdressState extends State<DelieveryAdress> {
                       shape: MaterialStateProperty.all(RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(10),
                       ))),
-                  onPressed: () {
-                    // if (fullName.text == '') isFullnameEmpty = true;
+                  onPressed: () async{
+                    if (fullName.text == '') isFullnameEmpty = true;
 
-                    // if (mobileNumber.text == '') isMobileNoEmpty = true;
+                    if (mobileNumber.text == '') isMobileNoEmpty = true;
 
-                    // if (pincode.text == '') isPincodeEmpty = true;
+                    if (pincode.text == '') isPincodeEmpty = true;
 
-                    // if (houseNo.text == '') isHouseNoEmpty = true;
+                    if (houseNo.text == '') isHouseNoEmpty = true;
 
-                    // if (area.text == '') isAreaEmpty = true;
+                    if (area.text == '') isAreaEmpty = true;
 
-                    // if (landmark.text == '') isLandmarkEmpty = true;
+                    if (landmark.text == '') isLandmarkEmpty = true;
 
                     if (isFullnameEmpty ||
                         isMobileNoEmpty ||
@@ -465,44 +467,28 @@ class _DelieveryAdressState extends State<DelieveryAdress> {
                         isLandmarkEmpty)
                       setState(() {});
                     else {
-                      //  FirebaseFirestore.instance
-                      //     .collection('Users')
-                      //     .doc(FirebaseAuth.instance.currentUser!.uid)
-                      //     .update({
-                      //   'address': [
-                      //     {
-                      //       'Country': 'India',
-                      //       'Fullname': 'Lakhan Baheti 1',
-                      //       'Mobilenumber': '9999999999',
-                      //       'Pincode': '492001',
-                      //       'Flat,House no,Building,Company,Apartment':
-                      //           'Luv Kush Vihar B-20',
-                      //       'Area,Colony,Street,Sector,Village':
-                      //           'Choubey Colony',
-                      //       'Landmark': 'near RKC',
-                      //       'City':'Raipur',
-                      //       'State':'Chattisgarh'
-                      //     },
-                      //      {
-                      //       'Country': 'India',
-                      //       'Fullname': 'Lakhan Baheti 2',
-                      //       'Mobilenumber': '9999999999',
-                      //       'Pincode': '492001',
-                      //       'Flat,House no,Building,Company,Apartment':
-                      //           'Luv Kush Vihar B-20',
-                      //       'Area,Colony,Street,Sector,Village':
-                      //           'Choubey Colony',
-                      //       'Landmark': 'near RKC',
-                      //       'City':'Raipur',
-                      //       'State':'Chattisgarh'
-                      //     }
-                      //   ]
-                      // });
-                      // .get()
-                      // .then((value) {
-                      //   value.
-                      // });
-                     // Navigator.of(context).popAndPushNamed('toCheckoutScreen');
+                       await FirebaseFirestore.instance
+                          .collection('Users')
+                          .doc(FirebaseAuth.instance.currentUser!.uid)
+                          .update({
+                        'address': [
+                          {
+                            'Country': country,
+                            'Fullname': fullName.text,
+                            'Mobilenumber': mobileNumber.text,
+                            'Pincode': pincode.text,
+                            'Flat,House no,Building,Company,Apartment':
+                                houseNo.text,
+                            'Area,Colony,Street,Sector,Village':
+                                area.text,
+                            'Landmark': landmark.text,
+                            'City':"",
+                            'State':state
+                          },
+                        ]
+                      });
+                      
+                     Navigator.of(context).pop();
                     }
                   },
                   child: Text(

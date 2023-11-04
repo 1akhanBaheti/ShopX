@@ -81,9 +81,8 @@ class CheckoutProvider extends ChangeNotifier {
 
         // print(value.data());
 
-        address = await value.data()!['address'];
-
-        if (particularAdress == null) particularAdress = address[0];
+        address = await value.data()!['address'] ?? [];
+        if (particularAdress == null && address.isNotEmpty) particularAdress = address[0];
       });
       //return data;
     } catch (e) {
