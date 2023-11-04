@@ -5,14 +5,12 @@
 This Flutter application is an e-commerce platform designed to facilitate online shopping. It provides a user-friendly interface for customers to browse products, add them to their cart, and make secure purchases.
 
 # Screenshots 📷
-|<br> ![](https://raw.githubusercontent.com/1akhanBaheti/ShopX/main/screenshots/onboarding.jpg)   | <br> ![](https://raw.githubusercontent.com/1akhanBaheti/ShopX/main/screenshots/login.jpg)    |
-| ------------ | ------------ |
-|<br>![](https://raw.githubusercontent.com/1akhanBaheti/ShopX/main/screenshots/drawer.jpg)   |<br> ![](https://raw.githubusercontent.com/1akhanBaheti/ShopX/main/screenshots/home.jpg)    |
-|<br>![](https://raw.githubusercontent.com/1akhanBaheti/ShopX/main/screenshots/search.jpg)   |<br> ![](https://raw.githubusercontent.com/1akhanBaheti/ShopX/main/screenshots/product-detail.jpg)    |
-|<br> ![](https://raw.githubusercontent.com/1akhanBaheti/ShopX/main/screenshots/empty-cart.jpg)   |<br> ![](https://raw.githubusercontent.com/1akhanBaheti/ShopX/main/screenshots/empty-whishlist.jpg)    |
-|<br> ![](https://raw.githubusercontent.com/1akhanBaheti/ShopX/main/screenshots/cart.jpg)   |<br> ![](https://raw.githubusercontent.com/1akhanBaheti/ShopX/main/screenshots/product-whishlist.jpg)    |
-|<br> ![](https://raw.githubusercontent.com/1akhanBaheti/ShopX/main/screenshots/save-for-later.jpg)   |<br> ![](https://raw.githubusercontent.com/1akhanBaheti/ShopX/main/screenshots/checkout.jpg)    |
-|<br> ![](https://raw.githubusercontent.com/1akhanBaheti/ShopX/main/screenshots/checkout-payment.jpg)   |<br> ![](https://raw.githubusercontent.com/1akhanBaheti/ShopX/main/screenshots/order-successful.jpg)    |
+|<br> ![](https://raw.githubusercontent.com/1akhanBaheti/ShopX/main/screenshots/onboarding.jpg)   | <br> ![](https://raw.githubusercontent.com/1akhanBaheti/ShopX/main/screenshots/login.jpg)  |<br>![](https://raw.githubusercontent.com/1akhanBaheti/ShopX/main/screenshots/drawer.jpg)     |
+| ------------ | ------------ | --------- |
+|<br> ![](https://raw.githubusercontent.com/1akhanBaheti/ShopX/main/screenshots/home.jpg)    |<br>![](https://raw.githubusercontent.com/1akhanBaheti/ShopX/main/screenshots/search.jpg)   |<br> ![](https://raw.githubusercontent.com/1akhanBaheti/ShopX/main/screenshots/product-detail.jpg)
+|<br> ![](https://raw.githubusercontent.com/1akhanBaheti/ShopX/main/screenshots/empty-cart.jpg)   |<br> ![](https://raw.githubusercontent.com/1akhanBaheti/ShopX/main/screenshots/empty-whishlist.jpg)    |<br> ![](https://raw.githubusercontent.com/1akhanBaheti/ShopX/main/screenshots/cart.jpg)   
+|<br> ![](https://raw.githubusercontent.com/1akhanBaheti/ShopX/main/screenshots/product-whishlist.jpg)    |<br> ![](https://raw.githubusercontent.com/1akhanBaheti/ShopX/main/screenshots/save-for-later.jpg)   |<br> ![](https://raw.githubusercontent.com/1akhanBaheti/ShopX/main/screenshots/checkout.jpg)  
+|  <br> ![](https://raw.githubusercontent.com/1akhanBaheti/ShopX/main/screenshots/checkout-payment.jpg)   |<br> ![](https://raw.githubusercontent.com/1akhanBaheti/ShopX/main/screenshots/order-successful.jpg)   | <br> ![](https://raw.githubusercontent.com/1akhanBaheti/ShopX/main/screenshots/profile.jpg) |
 
 # Features 🚀
   - **User Authentication 🛡️:**_Users can sign up, log in, and manage their profiles._
